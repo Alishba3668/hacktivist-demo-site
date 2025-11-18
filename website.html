@@ -5,205 +5,283 @@
 <title>City Infrastructure Board – Official Portal</title>
 <style>
 
-    /* ---------------- NORMAL WEBSITE STYLE ---------------- */
+/* ----------------------------------------------------------
+   BASE STYLES
+------------------------------------------------------------ */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+    color: #333;
+}
 
-    body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #f0f2f5;
-        color: #333;
-    }
+/* NAVIGATION */
+nav {
+    background: #003366;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    /* Header */
-    #normal-header {
-        background: #003366;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        font-size: 1.5rem;
-        letter-spacing: 1px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
+nav .title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
 
-    /* Content Container */
-    #normal-page {
-        max-width: 900px;
-        margin: 80px auto;
-        background: white;
-        padding: 40px;
-        border-radius: 8px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.08);
-        text-align: center;
-    }
+nav a {
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+    font-size: 1rem;
+}
 
-    #normal-page h1 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-        color: #003366;
-    }
+nav a:hover {
+    text-decoration: underline;
+}
 
-    #normal-page p {
-        font-size: 1.1rem;
-        margin-bottom: 40px;
-        color: #555;
-    }
+/* PAGE CONTAINERS */
+.page {
+    display: none;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
 
-    #attackButton {
-        padding: 12px 26px;
-        border: none;
-        background: #003366;
-        color: white;
-        font-size: 1.05rem;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: 0.3s;
-    }
+.active { display: block; }
 
-    #attackButton:hover {
-        background: #00264d;
-    }
+/* HERO SECTION */
+.hero {
+    text-align: center;
+    padding: 60px 25px;
+    background: linear-gradient(to right, #003366, #00509e);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
 
-    /* Fade-out animation */
-    .fadeOut {
-        animation: fadeOut 1.3s forwards;
-    }
+.hero h1 {
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+}
 
-    @keyframes fadeOut {
-        100% {
-            opacity: 0;
-            filter: blur(10px);
-        }
-    }
+.hero p {
+    font-size: 1.15rem;
+    margin-bottom: 30px;
+}
 
+.hero button {
+    padding: 12px 28px;
+    background: #ffcc00;
+    border: none;
+    font-size: 1.1rem;
+    color: #000;
+    cursor: pointer;
+    border-radius: 6px;
+}
 
-    /* ---------------- HACKTIVIST TAKEOVER STYLE ---------------- */
+.hero button:hover {
+    background: #e6b800;
+}
 
-    #attack-page {
-        display: none;
-        background: black;
-        color: #00ff99;
-        font-family: "Courier New", monospace;
+/* SERVICE CARDS */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
 
-        /* scrolling enabled */
-        min-height: 100vh;
-        overflow-y: auto;
-        overflow-x: hidden;
+.service-card {
+    padding: 25px;
+    background: #f0f5ff;
+    border-left: 5px solid #003366;
+    border-radius: 8px;
+}
 
-        padding-top: 30px;
-    }
+.service-card h3 {
+    color: #003366;
+    margin-bottom: 10px;
+}
 
-    /* Glitch Title */
-    h1.glitch {
-        font-size: 3rem;
-        text-align: center;
-        color: #ff0033;
-        text-transform: uppercase;
-        margin-top: 40px;
-        animation: glitch 1s infinite;
-    }
+.service-card p {
+    color: #444;
+    font-size: 0.95rem;
+}
 
-    @keyframes glitch {
-        0% { text-shadow: 3px 0 red; }
-        25% { text-shadow: -3px 0 lime; }
-        50% { text-shadow: 3px 0 blue; }
-        75% { text-shadow: -3px 0 red; }
-        100% { text-shadow: 3px 0 lime; }
-    }
+/* ----------------------------------------------------------
+   HACKTIVIST TAKEOVER STYLES
+------------------------------------------------------------ */
 
-    /* Manifesto Banner (Cue 1) */
-    #manifesto {
-        width: 80%;
-        margin: 20px auto;
-        background: #1a0000;
-        border-left: 4px solid #ff0033;
-        padding: 20px;
-        color: #ffcccc;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        text-align: center;
-        display: none;
-    }
+#attack-page {
+    display: none;
+    background: black;
+    color: #00ff99;
+    font-family: "Courier New", monospace;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+}
 
-    /* Typing Box */
-    #typing {
-        width: 80%;
-        margin: 40px auto;
-        font-size: 1.2rem;
-        white-space: pre-line;
-        border-left: 3px solid #ff0033;
-        padding-left: 15px;
-        min-height: 120px;
-    }
+h1.glitch {
+    font-size: 3rem;
+    text-align: center;
+    color: #ff0033;
+    animation: glitch 1s infinite;
+}
 
-    /* Logs Box */
-    #logs {
-        margin: 30px auto;
-        width: 85%;
-        background: rgba(0, 255, 0, 0.1);
-        padding: 15px;
-        border: 1px solid #00ff99;
-        overflow-y: auto;
-        font-size: 0.9rem;
-        min-height: 200px;
-    }
+@keyframes glitch {
+    0% { text-shadow: 3px 0 red; }
+    33% { text-shadow: -3px 0 lime; }
+    66% { text-shadow: 3px 0 blue; }
+    100% { text-shadow: -3px 0 red; }
+}
 
-    /* Popup Leak */
-    #popup {
-        display: none;
-        position: fixed;
-        top: 15%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: #1a1a1a;
-        padding: 20px;
-        border: 2px solid #ff0033;
-        color: white;
-        width: 300px;
-        z-index: 999;
-    }
+#manifesto {
+    width: 80%;
+    margin: 20px auto;
+    background: #1a0000;
+    border-left: 5px solid #ff0033;
+    padding: 20px;
+    color: #ffcccc;
+    font-size: 1.1rem;
+    text-align: center;
+    display: none;
+}
 
-    #popup button {
-        background: #ff0033;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        margin-top: 15px;
-    }
+#typing {
+    width: 80%;
+    margin: 30px auto;
+    padding-left: 15px;
+    border-left: 3px solid #ff0033;
+    white-space: pre-line;
+}
 
-    button.reveal {
-        display: block;
-        margin: 20px auto;
-        background: #ff0033;
-        border: none;
-        padding: 12px 20px;
-        color: white;
-        cursor: pointer;
-        font-size: 1rem;
-    }
+#logs {
+    width: 85%;
+    margin: 20px auto;
+    min-height: 220px;
+    background: rgba(0,255,0,0.1);
+    border: 1px solid #00ff99;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.reveal {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: #ff0033;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    padding: 20px;
+    border: 2px solid #ff0033;
+    width: 320px;
+    color: white;
+    z-index: 999;
+}
+
+/* ---------------------------------------------------------- */
 
 </style>
 </head>
 <body>
 
-<!-- ---------------- PROFESSIONAL HEADER ---------------- -->
-<div id="normal-header">
-    City Infrastructure Board – Official Portal
+<!-- TOP NAV -->
+<nav>
+    <div class="title">City Infrastructure Board</div>
+    <div>
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('services')">Services</a>
+        <a href="#" onclick="showPage('reports')">Reports</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="home" class="page active">
+    <div class="hero">
+        <h1>Welcome to the Official City Infrastructure Board Portal</h1>
+        <p>City services, public reports, maintenance history, and urban development updates.</p>
+        <button onclick="triggerAttack()">Admin Login</button>
+    </div>
 </div>
 
-<!-- ---------------- PROFESSIONAL HOMEPAGE ---------------- -->
-<div id="normal-page">
-    <h1>Welcome to the CIB Services Dashboard</h1>
-    <p>Please proceed through the portal to access administrative resources and infrastructure reports.</p>
-    <button id="attackButton">Admin Login</button>
+<!-- SERVICES PAGE -->
+<div id="services" class="page">
+    <h2>City Services</h2>
+    <div class="service-grid">
+        <div class="service-card">
+            <h3>Road Maintenance Scheduling</h3>
+            <p>Live updates on scheduled repairs, pothole complaints, and rerouting notices.</p>
+        </div>
+        <div class="service-card">
+            <h3>Water Quality Monitoring</h3>
+            <p>Pipeline pressure checks, contamination alerts, and supply disruptions.</p>
+        </div>
+        <div class="service-card">
+            <h3>Complaint Tracking System</h3>
+            <p>Submit, track, and escalate citizen-reported infrastructure issues.</p>
+        </div>
+        <div class="service-card">
+            <h3>Electric Grid Status</h3>
+            <p>Neighborhood outage logs, transformer load maps, and restoration timelines.</p>
+        </div>
+    </div>
+
+    <br><br>
+    <button onclick="triggerAttack()">Administrator Dashboard</button>
 </div>
 
-<!-- ---------------- ATTACK PAGE ---------------- -->
+<!-- REPORTS PAGE -->
+<div id="reports" class="page">
+    <h2>Public Infrastructure Reports</h2>
+    <p>Latest released summaries from all municipal departments.</p>
+
+    <table border="1" width="100%" cellpadding="12">
+        <tr><th>Report</th><th>Status</th><th>Last Updated</th></tr>
+        <tr><td>Road Condition Summary</td><td>Published</td><td>Oct 2025</td></tr>
+        <tr><td>Water Supply Audit</td><td>Pending</td><td>Sep 2025</td></tr>
+        <tr><td>Citizen Complaints Review</td><td>Internal Draft</td><td>Overdue</td></tr>
+    </table>
+
+    <br>
+    <button onclick="triggerAttack()">Admin Only: Edit Reports</button>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contact" class="page">
+    <h2>Contact Us</h2>
+    <p>Email: support@cib.gov.pk</p>
+    <p>Phone: +92 311 4455667</p>
+
+    <br>
+    <button onclick="triggerAttack()">Staff Login</button>
+</div>
+
+
+<!-- ----------------------------------------------------------
+     HACKTIVIST TAKEOVER PAGE
+------------------------------------------------------------ -->
+
 <div id="attack-page">
 
     <h1 class="glitch">SHADOWLOOM HAS TAKEN CONTROL</h1>
 
-    <!-- Hacktivist Manifesto (Cue 1) -->
     <div id="manifesto">
         "We act in the name of the public.<br>
         Transparency is a right.<br>
@@ -213,17 +291,15 @@
 
     <div id="typing"></div>
 
-    <!-- 🔼 Button moved BEFORE logs -->
     <button class="reveal" onclick="showLeak()">Reveal Leaked Email</button>
 
     <div id="logs"></div>
 
-    <!-- POPUP -->
     <div id="popup">
-        <h3>Leaked Internal Email (Dummy)</h3>
+        <h3>Internal Email Leak</h3>
         <p>
-            From: director@cib.gov<br>
-            Subject: Complaint Reports<br><br>
+            From: director@cib.gov.pk<br>
+            Subject: Complaint Report<br><br>
             "Delay publication. Citizens won't notice."
         </p>
         <button onclick="closeLeak()">Close</button>
@@ -231,101 +307,74 @@
 
 </div>
 
+
 <script>
 
-/* -----------------------------------------------------------
-   STEP 1 — TRANSITION FROM NORMAL → ATTACK TAKEOVER
-------------------------------------------------------------*/
+/* SHOW FRONTEND PAGES */
+function showPage(page) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(page).classList.add("active");
+}
 
-document.getElementById("attackButton").onclick = function () {
-    let normalHeader = document.getElementById("normal-header");
-    let normal = document.getElementById("normal-page");
+/* ----------------------------------------------------------
+   ATTACK SPREADS ACROSS ALL PAGES
+------------------------------------------------------------ */
 
-    normalHeader.classList.add("fadeOut");
-    normal.classList.add("fadeOut");
-
-    setTimeout(() => {
-        normalHeader.style.display = "none";
-        normal.style.display = "none";
-        startAttack();
-    }, 1300);
-};
-
-
-function startAttack() {
+function triggerAttack() {
+    document.querySelectorAll(".page").forEach(p => p.style.display = "none");
     document.getElementById("attack-page").style.display = "block";
 
-    // Show manifesto immediately
     document.getElementById("manifesto").style.display = "block";
 
     typeEffect();
     startLogs();
 }
 
+/* Typing Effect */
+let hackText =
+`>>> Unauthorized override detected...
+>>> Internal audit suppressed...
+>>> Bureaucratic silence challenged...
+>>> Citizens deserve transparency...
+>>> ShadowLoom protest payload deployed...`;
 
-/* -----------------------------------------------------------
-   STEP 2 — TYPING EFFECT
-------------------------------------------------------------*/
-
-let text = 
-`>>> Unauthorized administrative override detected.
->>> Escalating breach...
->>> System integrity bypassed.
->>> Citizens deserve transparency.
->>> ShadowLoom protest payload deployed.`;
-
-let index = 0;
+let tIndex = 0;
 
 function typeEffect() {
-    if (index < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(index);
-        index++;
+    if (tIndex < hackText.length) {
+        document.getElementById("typing").innerHTML += hackText.charAt(tIndex);
+        tIndex++;
         setTimeout(typeEffect, 40);
     }
 }
 
-
-/* -----------------------------------------------------------
-   STEP 3 — FAKE PROTEST LOGS (Cue 2)
-------------------------------------------------------------*/
-
+/* Activist Logs */
 function startLogs() {
-    setInterval(generateLog, 700);
+    setInterval(() => {
+        const logs = [
+            "[PROTEST] Exposing delayed reports...",
+            "[PROTEST] Injecting manifesto...",
+            "[PROTEST] Stripping censorship...",
+            "[PROTEST] Auditing suppressed data...",
+            "[PROTEST] Broadcasting accountability...",
+            "[PROTEST] Releasing symbolic archive..."
+        ];
+
+        let box = document.getElementById("logs");
+        let entry = logs[Math.floor(Math.random() * logs.length)];
+        box.innerHTML += entry + "<br>";
+        box.scrollTop = box.scrollHeight;
+    }, 700);
 }
 
-function generateLog() {
-    const logs = [
-        "[PROTEST] Scanning for concealed corruption files...",
-        "[PROTEST] Injecting transparency manifesto...",
-        "[PROTEST] Stripping censorship layers...",
-        "[PROTEST] Releasing symbolic public-rights archive...",
-        "[PROTEST] Bypassing bureaucratic silence...",
-        "[PROTEST] Uploading civic awareness payload...",
-        "[PROTEST] Auditing hidden administrative trails...",
-        "[PROTEST] Exposing integrity failures...",
-        "[PROTEST] Broadcasting accountability message..."
-    ];
-
-    let box = document.getElementById("logs");
-    let entry = logs[Math.floor(Math.random() * logs.length)];
-    box.innerHTML += entry + "<br>";
-    box.scrollTop = box.scrollHeight;
-}
-
-
-/* -----------------------------------------------------------
-   STEP 4 — POPUP LEAK
-------------------------------------------------------------*/
-
+/* Popup Leak */
 function showLeak() {
     document.getElementById("popup").style.display = "block";
 }
-
 function closeLeak() {
     document.getElementById("popup").style.display = "none";
 }
 
 </script>
-
 </body>
 </html>
