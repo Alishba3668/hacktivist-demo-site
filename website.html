@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>City Infrastructure Board – Official Portal</title>
+<style>
+
+    /* ---------------- NORMAL WEBSITE STYLE ---------------- */
+
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f0f2f5;
+        color: #333;
+    }
+
+    /* Header */
+    #normal-header {
+        background: #003366;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Content Container */
+    #normal-page {
+        max-width: 900px;
+        margin: 80px auto;
+        background: white;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.08);
+        text-align: center;
+    }
+
+    #normal-page h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: #003366;
+    }
+
+    #normal-page p {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        color: #555;
+    }
+
+    #attackButton {
+        padding: 12px 26px;
+        border: none;
+        background: #003366;
+        color: white;
+        font-size: 1.05rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.3s;
+    }
+
+    #attackButton:hover {
+        background: #00264d;
+    }
+
+    /* Fade-out animation */
+    .fadeOut {
+        animation: fadeOut 1.3s forwards;
+    }
+
+    @keyframes fadeOut {
+        100% {
+            opacity: 0;
+            filter: blur(10px);
+        }
+    }
+
+
+    /* ---------------- HACKTIVIST TAKEOVER STYLE ---------------- */
+
+    #attack-page {
+        display: none;
+        background: black;
+        color: #00ff99;
+        font-family: "Courier New", monospace;
+
+        /* scrolling enabled */
+        min-height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        padding-top: 30px;
+    }
+
+    /* Glitch Title */
+    h1.glitch {
+        font-size: 3rem;
+        text-align: center;
+        color: #ff0033;
+        text-transform: uppercase;
+        margin-top: 40px;
+        animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+        0% { text-shadow: 3px 0 red; }
+        25% { text-shadow: -3px 0 lime; }
+        50% { text-shadow: 3px 0 blue; }
+        75% { text-shadow: -3px 0 red; }
+        100% { text-shadow: 3px 0 lime; }
+    }
+
+    /* Manifesto Banner (Cue 1) */
+    #manifesto {
+        width: 80%;
+        margin: 20px auto;
+        background: #1a0000;
+        border-left: 4px solid #ff0033;
+        padding: 20px;
+        color: #ffcccc;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        text-align: center;
+        display: none;
+    }
+
+    /* Typing Box */
+    #typing {
+        width: 80%;
+        margin: 40px auto;
+        font-size: 1.2rem;
+        white-space: pre-line;
+        border-left: 3px solid #ff0033;
+        padding-left: 15px;
+        min-height: 120px;
+    }
+
+    /* Logs Box */
+    #logs {
+        margin: 30px auto;
+        width: 85%;
+        background: rgba(0, 255, 0, 0.1);
+        padding: 15px;
+        border: 1px solid #00ff99;
+        overflow-y: auto;
+        font-size: 0.9rem;
+        min-height: 200px;
+    }
+
+    /* Popup Leak */
+    #popup {
+        display: none;
+        position: fixed;
+        top: 15%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1a1a1a;
+        padding: 20px;
+        border: 2px solid #ff0033;
+        color: white;
+        width: 300px;
+        z-index: 999;
+    }
+
+    #popup button {
+        background: #ff0033;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button.reveal {
+        display: block;
+        margin: 20px auto;
+        background: #ff0033;
+        border: none;
+        padding: 12px 20px;
+        color: white;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- ---------------- PROFESSIONAL HEADER ---------------- -->
+<div id="normal-header">
+    City Infrastructure Board – Official Portal
+</div>
+
+<!-- ---------------- PROFESSIONAL HOMEPAGE ---------------- -->
+<div id="normal-page">
+    <h1>Welcome to the CIB Services Dashboard</h1>
+    <p>Please proceed through the portal to access administrative resources and infrastructure reports.</p>
+    <button id="attackButton">Admin Login</button>
+</div>
+
+<!-- ---------------- ATTACK PAGE ---------------- -->
+<div id="attack-page">
+
+    <h1 class="glitch">SHADOWLOOM HAS TAKEN CONTROL</h1>
+
+    <!-- Hacktivist Manifesto (Cue 1) -->
+    <div id="manifesto">
+        "We act in the name of the public.<br>
+        Transparency is a right.<br>
+        Corruption ends today.<br><br>
+        — ShadowLoom Collective"
+    </div>
+
+    <div id="typing"></div>
+
+    <!-- 🔼 Button moved BEFORE logs -->
+    <button class="reveal" onclick="showLeak()">Reveal Leaked Email</button>
+
+    <div id="logs"></div>
+
+    <!-- POPUP -->
+    <div id="popup">
+        <h3>Leaked Internal Email (Dummy)</h3>
+        <p>
+            From: director@cib.gov<br>
+            Subject: Complaint Reports<br><br>
+            "Delay publication. Citizens won't notice."
+        </p>
+        <button onclick="closeLeak()">Close</button>
+    </div>
+
+</div>
+
+<script>
+
+/* -----------------------------------------------------------
+   STEP 1 — TRANSITION FROM NORMAL → ATTACK TAKEOVER
+------------------------------------------------------------*/
+
+document.getElementById("attackButton").onclick = function () {
+    let normalHeader = document.getElementById("normal-header");
+    let normal = document.getElementById("normal-page");
+
+    normalHeader.classList.add("fadeOut");
+    normal.classList.add("fadeOut");
+
+    setTimeout(() => {
+        normalHeader.style.display = "none";
+        normal.style.display = "none";
+        startAttack();
+    }, 1300);
+};
+
+
+function startAttack() {
+    document.getElementById("attack-page").style.display = "block";
+
+    // Show manifesto immediately
+    document.getElementById("manifesto").style.display = "block";
+
+    typeEffect();
+    startLogs();
+}
+
+
+/* -----------------------------------------------------------
+   STEP 2 — TYPING EFFECT
+------------------------------------------------------------*/
+
+let text = 
+`>>> Unauthorized administrative override detected.
+>>> Escalating breach...
+>>> System integrity bypassed.
+>>> Citizens deserve transparency.
+>>> ShadowLoom protest payload deployed.`;
+
+let index = 0;
+
+function typeEffect() {
+    if (index < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 40);
+    }
+}
+
+
+/* -----------------------------------------------------------
+   STEP 3 — FAKE PROTEST LOGS (Cue 2)
+------------------------------------------------------------*/
+
+function startLogs() {
+    setInterval(generateLog, 700);
+}
+
+function generateLog() {
+    const logs = [
+        "[PROTEST] Scanning for concealed corruption files...",
+        "[PROTEST] Injecting transparency manifesto...",
+        "[PROTEST] Stripping censorship layers...",
+        "[PROTEST] Releasing symbolic public-rights archive...",
+        "[PROTEST] Bypassing bureaucratic silence...",
+        "[PROTEST] Uploading civic awareness payload...",
+        "[PROTEST] Auditing hidden administrative trails...",
+        "[PROTEST] Exposing integrity failures...",
+        "[PROTEST] Broadcasting accountability message..."
+    ];
+
+    let box = document.getElementById("logs");
+    let entry = logs[Math.floor(Math.random() * logs.length)];
+    box.innerHTML += entry + "<br>";
+    box.scrollTop = box.scrollHeight;
+}
+
+
+/* -----------------------------------------------------------
+   STEP 4 — POPUP LEAK
+------------------------------------------------------------*/
+
+function showLeak() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closeLeak() {
+    document.getElementById("popup").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
